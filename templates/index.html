@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Новости</title>
+
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
+
+    <style>
+        a {
+            text-decoration: none !important;
+            color: inherit;
+        }
+
+        .news-src {
+            width: 32px;
+            margin-left: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div style="display:flex;justify-content: space-between;align-items: center;">
+    <a href="{% url 'index' %}">
+        <div class="mb-3 mt-1" style="display: flex;align-items: center">
+            <div style="margin-left: 10px">
+                <img style="width: 80px" src="{% static 'vtb.png' %}">
+                <h4>Ваша профильная лента бизнес-новостей</h4>
+            </div>
+        </div>
+    </a>
+
+    <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'api' %}">API документация</a>
+
+</div>
+
+<div style="display: flex;flex-direction: column;align-items: center">
+
+    <div class="col-6 shadow p-3 mb-5 bg-body"
+         style="border-radius: 16px; margin-top: 5%">
+        <div class="mb-3">
+            <h4>Поиск</h4>
+            <div style="display: flex;align-items: flex-start;">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ключевые слова">
+                <button style="margin-left: 10px" type="submit" class="btn btn-primary mb-3">Найти</button>
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-outline-primary">Экономика</button>
+            <button type="button" class="btn btn-outline-primary">Рязанская область</button>
+            <button type="button" class="btn btn-outline-primary">Павел Малков</button>
+
+            <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <img style="width: 32px; height: 32px; margin-left: 50px" src="{% static 'settings.gif' %}"></a>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade right" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Настройки</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="margin-top: 10px">
+                        <h5>Источник новостей</h5>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                            <img class="news-src"
+                                 src="https://inkocoin.ru/wp-content/uploads/2022/06/free-png.ru-473.png"> Яндекс.Дзен
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <img class="news-src" src="{% static 'ria.png' %}"> РИА Новости
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <img class="news-src"
+                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/TASS_logo_2020.svg/1200px-TASS_logo_2020.svg.png">
+                            ТАСС
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <img class="news-src" src="https://icss.ru/images/news/logos/logo_lentaru.png"> Lenta.ru
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <img class="news-src" src="{% static 'rbk.png' %}"> РБК
+                        </div>
+
+                    </div>
+                    <div style="margin-top: 10px">
+                        <h5>Роль</h5>
+                        <select class="form-select" aria-label="Default select example">
+                            <option value="1">Бухгалтер</option>
+                            <option value="2">Генеральный директор</option>
+                        </select>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary">Применить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- Развернутая новость -->
+    <div class="modal fade right" id="mews1" tabindex="-1" aria-labelledby="mews1Label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Настройки</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ,,,
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary">Перейти на источник</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <a type="button" data-bs-toggle="modal" data-bs-target="#mews1"><div class="shadow p-3 mb-5 bg-body"
+         style="display:flex;background-color: #fafafa; padding: 3%; border-radius: 16px; margin-top: 5%">
+        <div style="display:flex;flex-direction: column;justify-content: space-between;">
+            <div>
+                <h4 style="width: 600px">Белоруссия продлила запрет на вывоз пшеничной муки и гречки</h4>
+                <h6>19:44</h6>
+            </div>
+            <div>
+                <button type="button" class="btn btn-outline-primary">Экономика</button>
+                <button type="button" class="btn btn-outline-primary">Рязанская область</button>
+                <button type="button" class="btn btn-outline-primary">Павел Малков</button>
+            </div>
+        </div>
+        <img style="width: 300px"
+             src="https://cdnn21.img.ria.ru/images/156209/07/1562090770_0:160:3072:1888_436x0_80_0_0_463e4c421a5f88a7b26063c0d10e68b0.jpg">
+    </div>
+        </a>
+
+
+    <img class="load" src="{% static 'load.gif' %}" width="300" style="display: block">
+
+
+    <label style="color: #c9c9c9">MORE.Tech 4.0 | Трек 2 - DATA</label>
+    <label style="color: #c9c9c9">StarTrek Team 2022</label>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    {#const myModal = document.getElementById('myModal')#}
+    {#const myInput = document.getElementById('myInput')#}
+
+    {#myModal.addEventListener('shown.bs.modal', () => {#}
+    {#    myInput.focus()#}
+    {# })#}
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+
+</body>
+
+</html>
