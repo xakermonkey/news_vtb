@@ -23,7 +23,7 @@ class Role(models.Model):
 
     class Meta:
         verbose_name = "Роль в компании"
-        verbose_name_plural = "Роли в компиниях"
+        verbose_name_plural = "Роли в компаниях"
 
     def __str__(self):
         return self.name
