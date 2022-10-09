@@ -29,6 +29,7 @@
             width: 32px;
             margin-left: 10px;
         }
+
         .lab2 {
             margin-left: 30px;
         }
@@ -59,47 +60,35 @@
 </div>
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <div style="height: 400px;width: 100%; background-color: black; opacity: 0.5; position: absolute"></div>
-      <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="d-block" style="height: 400px;width: 100%">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-item">
-                <div style="height: 400px;width: 100%; background-color: black; opacity: 0.5; position: absolute"></div>
-
-      <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="d-block" style="height: 400px;width: 100%">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
+    <div class="carousel-inner">
+        {% for news in top_news %}
+            <div class="carousel-item {% cycle "active" "" "" %}">
+                <div style="height: 400px;width: auto; background-color: black; opacity: 0.5; position: absolute"></div>
+                <img src="{% if news.img != "" %}{{ news.img }}{% else %}{{ news.media.logo }}{% endif %}"
+                     class="d-block" style="height: 400px;width: 100%">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ news.title }}</h5>
+                    <p>{{ news.media.name }}</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    <div class="carousel-item">
-                <div style="height: 400px;width: 100%; background-color: black; opacity: 0.5; position: absolute"></div>
-
-      <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="d-block" style="height: 400px;width: 100%">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Предыдущая</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующая</span>
+    </button>
 </div>
 
 <div style="display: flex;flex-direction: column;align-items: center">
@@ -110,8 +99,9 @@
             <h4>Поиск</h4>
             <div style="display: flex;align-items: flex-start;">
                 <select style="width: 100%" class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                    <option value="AL">тэг1</option>
-                    <option value="WY">тэг2</option>
+                    {% for tag in Tags %}
+                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                    {% endfor %}
                 </select>
                 {#                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ключевые слова">#}
                 <button style="margin-left: 10px" type="submit" class="btn btn-primary mb-3">Найти</button>
@@ -143,73 +133,55 @@
 
 
     <div style="display: flex">
-
         <div class="shadow mb-5 bg-body"
              style="display:flex;background-color: #fafafa; border-radius: 16px; margin-top: 5%">
-            <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="card-img-top"
+            <img src="
+
+
+
+
+
+
+
+
+
+
+                    {% if big_body_news.img != "" %}{{ big_body_news.img }}{% else %}{{ big_body_news.media.logo }}{% endif %}"
+                 class="card-img-top"
                  style="width: 500px;border-radius: 16px;height: 450px">
             <div style="width: 500px;height: 450px; background-color: black;opacity: 0.5;position: absolute;
         border-radius: 16px"></div>
             <div style="position: absolute; margin-top: 250px; margin-left: 20px">
                 <div style="display: flex;align-items: flex-start;">
-                    <span class="badge text-bg-primary">Технологии</span>
-                    <h6 class="lab1" style="color: white">08.10.2022</h6>
+                    <span class="badge text-bg-primary">{% if big_body_news.category == 1 %}
+                        {{ "Главный бухгалтер" }}{% elif big_body_news.category == 2 %}{{ "Генеральный директор" }}
+                    {% elif big_body_news.category == 3 %}{{ "Общая" }}{% endif %}</span>
+                    <h6 class="lab1" style="color: white">{{ big_body_news.date|date:"d.m.Y" }}</h6>
                 </div>
-                <h4 style="max-width: 400px;color: white " class="card-text">Some quick example text to build
-                    on the card
-                    title and make up the bulk of the card's content.</h4>
+                <h4 style="max-width: 400px;color: white " class="card-text">{{ big_body_news.title }}</h4>
             </div>
         </div>
 
         <div style="margin-left: 10px">
-            <div class="shadow bg-body"
-                 style="display:flex;background-color: #fafafa; border-radius: 16px; margin-top: 5%">
-                <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="card-img-top"
-                     style="width: 500px;border-radius: 16px;height: 150px">
-                <div style="width: 500px;height: 150px; background-color: black;opacity: 0.5;position: absolute;
+            {% for news in body_news %}
+                <div class="shadow bg-body"
+                     style="display:flex;background-color: #fafafa; border-radius: 16px; margin-top: 5%">
+                    <img src="{% if news.img != "" %}{{ news.img }}{% else %}{{ news.media.logo }}{% endif %}"
+                         class="card-img-top"
+                         style="width: 500px;border-radius: 16px;height: 150px">
+                    <div style="width: 500px;height: 150px; background-color: black;opacity: 0.5;position: absolute;
         border-radius: 16px"></div>
-                <div style="position: absolute;margin-top:5px; margin-left: 20px">
-                    <div style="display: flex;align-items: flex-start;">
-                        <span class="badge text-bg-primary">Технологии</span>
-                        <h6 class="lab1" style="color: white">08.10.2022</h6>
+                    <div style="position: absolute;margin-top:5px; margin-left: 20px">
+                        <div style="display: flex;align-items: flex-start;">
+                        <span class="badge text-bg-primary">{% if news.category == 1 %}
+                            {{ "Главный бухгалтер" }}{% elif news.category == 2 %}{{ "Генеральный директор" }}
+                        {% elif news.category == 3 %}{{ "Общая" }}{% endif %}</span>
+                            <h6 class="lab1" style="color: white">{{ news.date|date:"d.m.Y" }}</h6>
+                        </div>
+                        <h4 style="max-width: 500px;color: white " class="card-text">{{ news.title }}</h4>
                     </div>
-                    <h4 style="max-width: 500px;color: white " class="card-text">Some quick example text to build
-                        on the card
-                        title and make up the bulk of the card's content.</h4>
                 </div>
-            </div>
-            <div class="shadow bg-body"
-                 style="display:flex;background-color: #fafafa; border-radius: 16px; margin-top: 5%">
-                <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="card-img-top"
-                     style="width: 500px;border-radius: 16px;height: 150px">
-                <div style="width: 500px;height: 150px; background-color: black;opacity: 0.5;position: absolute;
-        border-radius: 16px"></div>
-                <div style="position: absolute;margin-top:5px; margin-left: 20px">
-                    <div style="display: flex;align-items: flex-start;">
-                        <span class="badge text-bg-primary">Технологии</span>
-                        <h6 class="lab1" style="color: white">08.10.2022</h6>
-                    </div>
-                    <h4 style="max-width: 500px;color: white " class="card-text">Some quick example text to build
-                        on the card
-                        title and make up the bulk of the card's content.</h4>
-                </div>
-            </div>
-            <div class="shadow bg-body"
-                 style="display:flex;background-color: #fafafa; border-radius: 16px; margin-top: 5%">
-                <img src="https://html.quomodosoft.com/binduz/assets/images/trending-thumb.png" class="card-img-top"
-                     style="width: 500px;border-radius: 16px;height: 150px">
-                <div style="width: 500px;height: 150px; background-color: black;opacity: 0.5;position: absolute;
-        border-radius: 16px"></div>
-                <div style="position: absolute;margin-top:5px; margin-left: 20px">
-                    <div style="display: flex;align-items: flex-start;">
-                        <span class="badge text-bg-primary">Технологии</span>
-                        <h6 class="lab1" style="color: white">08.10.2022</h6>
-                    </div>
-                    <h4 style="max-width: 500px;color: white " class="card-text">Some quick example text to build
-                        on the card
-                        title and make up the bulk of the card's content.</h4>
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
     </div>
@@ -217,40 +189,49 @@
     <!-- Modal -->
     <div class="modal fade right" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog modal-full-height modal-right">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Настройки</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div style="margin-top: 10px;max-height: 400px; overflow: auto">
-                        <h5>Источник новостей</h5>
-                        {% for media in medias %}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="{{ media.id }}" value="" id="flexCheckDefault" checked>
-                            <img class="news-src"
-                                 src="{{ media.logo }}"> {{ media.name }}
-                        </div>
-                        {% endfor %}
+
+        <form action="" method="get">
+            {% csrf_token %}
+            <div class="modal-dialog modal-full-height modal-right">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Настройки</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div style="margin-top: 10px">
-                        <h5>Роль</h5>
-                        <select class="form-select" aria-label="Default select example">
-                            {% for role in roles %}
-                            <option value="{{ role.id }}">{{ role.name }}</option>
+
+                    <div class="modal-body">
+                        <div style="margin-top: 10px;max-height: 400px; overflow: auto">
+                            <h5>Источник новостей</h5>
+                            {% for media in medias %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="media_{{ media.id }}" value=""
+                                           id="flexCheckDefault"
+                                           {% if not filter_media or media.id in filter_media %}checked{% endif %}>
+                                    <img class="news-src"
+                                         src="{{ media.logo }}"> {{ media.name }}
+                                </div>
                             {% endfor %}
-                        </select>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <h5>Роль</h5>
+                            <select class="form-select" name="role" aria-label="Default select example">
+                                {% for role in roles %}
+                                    <option value="{{ role.id }}"
+                                            {% if role.id == select_role %}selected{% endif %}>{{ role.name }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
 
                     </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Применить</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Применить</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
 
@@ -275,24 +256,35 @@
     </div>
 
 
-    <a type="button" data-bs-toggle="modal" data-bs-target="#mews1">
-        <div class="shadow p-3 mb-5 bg-body"
-             style="display:flex;background-color: #fafafa; padding: 3%; border-radius: 16px; margin-top: 5%">
-            <div style="display:flex;flex-direction: column;justify-content: space-between;">
-                <div>
-                    <h4 style="width: 600px">Белоруссия продлила запрет на вывоз пшеничной муки и гречки</h4>
-                    <h6>19:44</h6>
+    <div style="width: 90%">
+        {% for key, item in news.items %}
+            {% if item %}
+                <div class="shadow p-3 mb-5 bg-body mt-5"
+                     style="display:block;background-color: #fafafa; padding: 3%; border-radius: 16px; margin-top: 5%">
+                    {% for new in item %}
+                        <div style="display:flex;flex-direction: column;justify-content: space-between;">
+                            <div>
+                                <div style="width: 100px">
+                    <span class="badge text-bg-primary">{% if new.news.category == 1 %}
+                        {{ "Главный бухгалтер" }}{% elif new.news.category == 2 %}{{ "Генеральный директор" }}
+                    {% elif new.news.category == 3 or new.news.category == 0 %}{{ "Общая" }}{% endif %}</span>
+                                </div>
+                                <h4 style="width: 600px">{{ new.news.title }}</h4>
+                                <h6>{{ new.news.date|date:"d.m.Y" }}</h6>
+                            </div>
+                            <div>
+                                {% for word  in new.keywords %}
+                                    <div class="btn btn-outline-primary">{{ word }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <img style="width: 300px"
+                             src="{% if news.img != "" %}{{ news.img }}{% else %}{{ news.media.logo }}{% endif %}">
+                    {% endfor %}
                 </div>
-                <div>
-                    <button type="button" class="btn btn-outline-primary">Экономика</button>
-                    <button type="button" class="btn btn-outline-primary">Рязанская область</button>
-                    <button type="button" class="btn btn-outline-primary">Павел Малков</button>
-                </div>
-            </div>
-            <img style="width: 300px"
-                 src="https://cdnn21.img.ria.ru/images/156209/07/1562090770_0:160:3072:1888_436x0_80_0_0_463e4c421a5f88a7b26063c0d10e68b0.jpg">
-        </div>
-    </a>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 
     <img class="load" src="{% static 'load.gif' %}" width="300" style="display: block">
